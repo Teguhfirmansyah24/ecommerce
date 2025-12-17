@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers; // Trait Laravel untuk logic registrasi
+use Illuminate\Support\Facades\Hash;    // Facade Hash untuk enkripsi password
+use Illuminate\Support\Facades\Validator; // Facade Validator untuk validasi input
+
 
 class RegisterController extends Controller
 {
@@ -49,9 +50,17 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name'     => ['required', 'string', 'max:255'],
+            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role'     => 'customer',
+        ], [
+            // CUSTOM MESSAGES
+            'name.required'     => 'Nama wajib diisi.',
+            'email.required'    => 'Email wajib diisi.',
+            'email.unique'      => 'Email sudah terdaftar. Gunakan email lain.',
+            'password.min'      => 'Password minimal 8 karakter agar aman.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
         ]);
     }
 
@@ -61,12 +70,22 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create(array $data): User
     {
+        // ================================================
+        // CREATE USER + HASH PASSWORD
+        // ================================================
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name'     => $data['name'],
+            'email'    => $data['email'],
+
+            // SECURITY CRITICAL: Password MENDATORY di-hash!
+            // Jangan pernah menyimpan password plaintext.
+            // Hash::make() menggunakan algoritma Bcrypt (default aman).
             'password' => Hash::make($data['password']),
+
+            // Set role default. Pastikan 'customer', jangan 'admin'.
+            'role'     => 'customer',
         ]);
     }
 }
