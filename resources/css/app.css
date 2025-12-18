@@ -9,3 +9,88 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+/* ================================================
+   FILE: resources/css/app.css
+   FUNGSI: Entry point untuk semua CSS
+   ================================================ */
+
+/* Import Bootstrap CSS */
+/* Kita import di sini agar ikut ter-compile oleh Vite dan bisa di-minify saat production */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+/* Import Bootstrap Icons */
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+/* ================================================
+   CUSTOM STYLES - Variabel dan Override
+   ================================================ */
+
+:root {
+    /* Warna Brand Toko */
+    --primary-color: #4f46e5;
+    /* Indigo */
+    --secondary-color: #10b981;
+    /* Emerald */
+    --accent-color: #f59e0b;
+    /* Amber */
+
+    /* Warna Text */
+    --text-dark: #1f2937;
+    --text-muted: #6b7280;
+    --text-light: #9ca3af;
+}
+
+/* Override Bootstrap Primary */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #4338ca;
+    border-color: #4338ca;
+}
+
+/* ================================================
+   LAYOUT STYLES
+   ================================================ */
+
+body {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    color: var(--text-dark);
+}
+
+/* Navbar Custom */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+/* Footer */
+footer {
+    background-color: #1f2937;
+    color: #fff;
+}
+
+/* Card Produk */
+.product-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge Diskon */
+.badge-discount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ef4444;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
