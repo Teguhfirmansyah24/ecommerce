@@ -126,6 +126,20 @@ class Product extends Model
         return $this->is_active && $this->stock > 0;
     }
 
+    public function getStockStatusAttribute()
+{
+    if ($this->stock > 10) {
+        return 'Tersedia';
+    }
+
+    if ($this->stock > 0) {
+        return 'Hampir Habis';
+    }
+
+    return 'Kosong';
+}
+
+
     // Scopes
 
     // Filter produk aktif

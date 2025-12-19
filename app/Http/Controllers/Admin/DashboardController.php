@@ -9,8 +9,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('profile.edit', [
-            'user' => auth()->user(),
-        ]);
+        return view('admin.dashboard');
     }
 }

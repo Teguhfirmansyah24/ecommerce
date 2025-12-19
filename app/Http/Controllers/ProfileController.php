@@ -3,7 +3,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\ProfileRequestUpdate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +28,7 @@ class ProfileController extends Controller
     /**
      * Mengupdate informasi profil user.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileRequestUpdate $request): RedirectResponse
     {
         $user = $request->user();
 
@@ -65,7 +65,7 @@ class ProfileController extends Controller
      * Helper khusus untuk menangani logika upload avatar.
      * Mengembalikan string path file yang tersimpan.
      */
-    protected function uploadAvatar(ProfileUpdateRequest $request, $user): string
+    protected function uploadAvatar(ProfileRequestUpdate $request, $user): string
     {
         // Hapus avatar lama (Garbage Collection)
         // Cek 1: Apakah user punya avatar sebelumnya?
