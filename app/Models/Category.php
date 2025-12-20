@@ -84,4 +84,11 @@ class Category extends Model
         }
         return asset('images/category-placeholder.png');
     }
+
+    public function scopeWithProducts($query)
+    {
+        return $query->whereHas('products', function ($q) {
+            $q->where('is_active', true); // Di dalam relasi products
+        });
+    }
 }
