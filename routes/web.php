@@ -14,7 +14,8 @@ use App\Http\Requests\ProfileRequestUpdate;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
-use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -104,7 +105,7 @@ Route::middleware(['auth', 'admin'])
     Route::resource('products', AdminProductController::class);
 
     // Kategori CRUD
-    Route::resource('categories', AdminCategoryController::class);
+    Route::resource('categories', AdminCategoryController::class)->except(['show']);
 
     // Manajemen Pesanan
     Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');

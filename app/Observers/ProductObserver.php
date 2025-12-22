@@ -4,7 +4,7 @@ namespace App\Observers;
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Cache;
-use functions\activity;
+use Illuminate\Support\Facades\Log;
 
 class ProductObserver
 {
