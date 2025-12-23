@@ -41,9 +41,11 @@ return new class extends Migration
 
             // Metode pembayaran
             $table->string('payment_method')->nullable();
+            $table->enum('payment_status', ['unpaid', 'paid', 'failed'])->default('unpaid');
 
             // Catatan dari pembeli
             $table->text('notes')->nullable();
+            $table->string('snap_token')->nullable();
 
             $table->timestamps();
 
