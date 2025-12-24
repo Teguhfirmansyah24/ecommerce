@@ -47,12 +47,12 @@ return new class extends Migration
             $table->text('notes')->nullable();
             $table->string('snap_token')->nullable();
 
-            $table->timestamps();
-
             // Index untuk query
             $table->index('order_number');
             $table->index('status');
             $table->index('created_at');
+
+            $table->timestamps();
         });
     }
 
