@@ -37,6 +37,7 @@ en-US --}}
 
     {{-- Stack untuk CSS tambahan per halaman --}}
     @stack('styles')
+    @stack('scripts')
 </head>
 
 <body>
