@@ -88,11 +88,11 @@ Route::middleware('auth')->group(function () {
     ->name('profile.google.unlink');
 
     // Payment Routes
-    Route::get('/orders/{order}/pay', [PaymentController::class, 'show'])
+    Route::get('/orders/{order}/pay', [OrderController::class, 'show'])
         ->name('orders.pay');
-    Route::get('/orders/{order}/success', [PaymentController::class, 'success'])
+    Route::get('/orders/{order}/success', [OrderController::class, 'success'])
         ->name('orders.success');
-    Route::get('/orders/{order}/pending', [PaymentController::class, 'pending'])
+    Route::get('/orders/{order}/pending', [OrderController::class, 'pending'])
         ->name('orders.pending');
 });
 
@@ -125,7 +125,7 @@ Route::middleware(['auth', 'admin'])
     // Manajemen Pesanan
     Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
-    Route::patch('/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    Route::patch('/orders/{order}/success', [AdminOrderController::class, 'updateStatus'])->name('orders.updateStatus');
 });
 
 Route::controller(GoogleController::class)->group(function () {
