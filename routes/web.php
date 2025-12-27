@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\MidtransNotificationController;
 
 
 Route::get('/', function () {
@@ -37,6 +38,9 @@ Route::get('/kategori/{nama}', function ($nama = 'semua') {
 Route::get('/produk/{id}', function ($id) {
     return "Detail produk #$id";
 })->name('produk.detail');
+
+Route::post('midtrans/notification', [MidtransNotificationController::class, 'handle'])
+    ->name('midtrans.notification');
 
 Auth::routes();
 

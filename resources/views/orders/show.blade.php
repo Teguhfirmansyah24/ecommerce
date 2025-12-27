@@ -57,7 +57,7 @@
                                             <td>{{ $item->product_name }}</td>
                                             <td class="text-center">{{ $item->quantity }}</td>
                                             <td class="text-end">
-                                                Rp {{ number_format($item->price, 0, ',', '.') }}
+                                                Rp {{ number_format($item->discount_price ?? $item->price, 0, ',', '.') }}
                                             </td>
                                             <td class="text-end">
                                                 Rp {{ number_format($item->subtotal, 0, ',', '.') }}
@@ -91,6 +91,11 @@
                         <p class="mb-1 fw-medium">{{ $order->shipping_name }}</p>
                         <p class="mb-1">{{ $order->shipping_phone }}</p>
                         <p class="mb-0">{{ $order->shipping_address }}</p>
+                    </div>
+
+                    <div class="alert alert-info">
+                        Status {{ $order->status ?? null }} <br>
+                        Snap Token {{ $snapToken ? 'ADA' : 'TIDAK ADA' }}
                     </div>
 
                     {{-- Tombol Bayar --}}

@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
+    public function success(Request $request)
+    {
+        $order = Order::where('order_number', $request->order_id)->firstOrFail();
+        return view('orders.success', compact('order'));
+    }
     /**
      * Mengambil Snap Token untuk order ini (API Endpoint).
      * Dipanggil via AJAX dari frontend saat user klik "Bayar".

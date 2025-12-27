@@ -26,6 +26,11 @@ return Application::configure(basePath: dirname(__DIR__))
             // ↑ 'admin' adalah nama alias
             // ↑ AdminMiddleware::class adalah class yang dijalankan
         ]);
+
+        $middleware->validateCsrfTokens(except: [
+            'midtrans/notification', // Endpoint webhook kita
+            'midtrans/*',            // Wildcard (jika ada route lain)
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

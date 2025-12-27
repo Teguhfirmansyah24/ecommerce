@@ -14,7 +14,7 @@
             <ul id="sidebarnav">
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Home</span>
+                    <span class="hide-menu">Admin Menu</span>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.dashboard') }}" aria-expanded="false">
@@ -45,11 +45,11 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./pengguna" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('admin.orders.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-alert-circle"></i>
                         </span>
-                        <span class="hide-menu">Pengguna</span>
+                        <span class="hide-menu">Orders</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
