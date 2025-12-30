@@ -1,6 +1,4 @@
 <?php
-// app/Services/CartService.php
-
 namespace App\Services;
 
 use App\Models\Cart;

@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MidtransNotificationController;
+use App\Http\Controllers\Admin\ReportController;
 
 
 Route::get('/', function () {
@@ -126,6 +127,11 @@ Route::middleware(['auth', 'admin'])
     Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
     Route::patch('/orders/{order}/success', [AdminOrderController::class, 'updateStatus'])->name('orders.updateStatus');
+
+    Route::get('/reports/sales', [ReportController::class, 'sales'])
+            ->name('reports.sales');
+    Route::get('/reports/export-sales', [ReportController::class, 'exportSales'])
+            ->name('reports.export-sales');
 });
 
 Route::controller(GoogleController::class)->group(function () {

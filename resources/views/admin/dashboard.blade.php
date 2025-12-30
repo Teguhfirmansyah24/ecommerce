@@ -134,7 +134,7 @@
                         <a href="{{ route('admin.categories.index') }}" class="btn btn-outline-primary">
                             <i class="bi bi-folder-plus me-2"></i> Kelola Kategori
                         </a>
-                        <a href="" class="btn btn-outline-primary">
+                        <a href="{{ route('admin.reports.sales') }}" class="btn btn-outline-primary">
                             <i class="bi bi-file-earmark-bar-graph me-2"></i> Lihat Laporan
                         </a>
                     </div>
