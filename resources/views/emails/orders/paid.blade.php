@@ -1,26 +1,89 @@
 {{-- resources/views/emails/orders/paid.blade.php --}}
+<!DOCTYPE html>
+<html lang="id">
 
-<x-mail::message>
-    # Halo, {{ $order->user->name }}
+<head>
+    <meta charset="UTF-8">
+    <title>Pesanan Dibayar</title>
 
-    Terima kasih! Pembayaran untuk pesanan **#{{ $order->order_number }}** telah kami terima.
-    Kami sedang memproses pesanan Anda.
+    {{-- Bootstrap 5 CDN --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
 
-    <x-mail::table>
-        | Produk | Qty | Harga |
-        |:-------|:---:|:------|
-        @foreach ($order->items as $item)
-            | {{ $item->product_name }} | {{ $item->quantity }} | Rp {{ number_format($item->price, 0, ',', '.') }} |
-        @endforeach
-        | **Total** | | **Rp {{ number_format($order->total_amount, 0, ',', '.') }}** |
-    </x-mail::table>
+<body class="bg-light py-4">
 
-    <x-mail::button :url="route('orders.show', $order)">
-        Lihat Detail Pesanan
-    </x-mail::button>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
 
-    Jika ada pertanyaan, silakan balas email ini.
+                <div class="card shadow-sm">
+                    <div class="card-body">
 
-    Salam,<br>
-    {{ config('app.name') }}
-</x-mail::message>
+                        <h4 class="mb-3">
+                            Halo, {{ $order->user->name }}
+                        </h4>
+
+                        <p>
+                            Terima kasih. Pembayaran untuk pesanan
+                            <strong>#{{ $order->order_number }}</strong>
+                            telah kami terima.
+                            Pesanan Anda sedang kami proses.
+                        </p>
+
+                        <div class="table-responsive my-4">
+                            <table class="table table-bordered align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Produk</th>
+                                        <th class="text-center">Qty</th>
+                                        <th class="text-end">Harga</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($order->items as $item)
+                                        <tr>
+                                            <td>{{ $item->product_name }}</td>
+                                            <td class="text-center">{{ $item->quantity }}</td>
+                                            <td class="text-end">
+                                                Rp {{ number_format($item->price, 0, ',', '.') }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    <tr class="fw-bold">
+                                        <td>Total</td>
+                                        <td></td>
+                                        <td class="text-end">
+                                            Rp {{ number_format($order->total_amount, 0, ',', '.') }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="text-center my-4">
+                            <a href="{{ route('orders.show', $order) }}" class="btn btn-primary">
+                                Lihat Detail Pesanan
+                            </a>
+                        </div>
+
+                        <p class="mb-0">
+                            Jika ada pertanyaan, silakan balas email ini.
+                        </p>
+
+                        <hr>
+
+                        <p class="text-muted mb-0">
+                            Salam,<br>
+                            {{ config('app.name') }}
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

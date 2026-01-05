@@ -53,23 +53,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./pesanan" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-cards"></i>
-                        </span>
-                        <span class="hide-menu">Pesanan</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./laporan" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-file-description"></i>
-                        </span>
-                        <span class="hide-menu">Laporan</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./laporan-penjualan" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('admin.reports.sales') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-typography"></i>
                         </span>
