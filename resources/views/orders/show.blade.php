@@ -93,11 +93,6 @@
                         <p class="mb-0">{{ $order->shipping_address }}</p>
                     </div>
 
-                    <div class="alert alert-info">
-                        Status {{ $order->status ?? null }} <br>
-                        Snap Token {{ $snapToken ? 'ADA' : 'TIDAK ADA' }}
-                    </div>
-
                     {{-- Tombol Bayar --}}
                     @if ($order->status === 'pending' && $snapToken)
                         <div class="card-body text-center bg-primary bg-opacity-10 border-top">

@@ -20,25 +20,7 @@ use App\Http\Controllers\MidtransNotificationController;
 use App\Http\Controllers\Admin\ReportController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/tentang', function () {
-    return view('tentang');
-});
-
-Route::get('/sapa/{nama}', function ($nama) {
-    return "Halo $nama! Selamat datang di toko saya";
-});
-
-Route::get('/kategori/{nama}', function ($nama = 'semua') {
-    return "Menampilkan Kategori $nama";
-});
-
-Route::get('/produk/{id}', function ($id) {
-    return "Detail produk #$id";
-})->name('produk.detail');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::post('midtrans/notification', [MidtransNotificationController::class, 'handle'])
     ->name('midtrans.notification');

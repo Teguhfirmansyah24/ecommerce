@@ -36,8 +36,8 @@ class CategoryController extends Controller
             // 'unique:categories': Pastikan nama belum dipakai di tabel categories
             'name' => 'required|string|max:100|unique:categories',
             'description' => 'nullable|string|max:500',
-            // Validasi file gambar (maks 1MB)
-            'image' => 'nullable|image|max:1024',
+            // Validasi file gambar (maks 2MB)
+            'image' => 'nullable|image|max:2048',
             'is_active' => 'boolean',
         ]);
 
@@ -73,7 +73,7 @@ class CategoryController extends Controller
             // Jika tidak dikecualikan, Laravel akan menganggap nama ini duplikat (karena sudah ada di DB milik record ini sendiri).
             'name' => 'required|string|max:100|unique:categories,name,' . $category->id,
             'description' => 'nullable|string|max:500',
-            'image' => 'nullable|image|max:1024',
+            'image' => 'nullable|image|max:2048',
             'is_active' => 'boolean',
         ]);
 

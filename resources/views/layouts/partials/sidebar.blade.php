@@ -2,7 +2,7 @@
     <!-- Sidebar scroll-->
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="./home" class="text-nowrap logo-img">
+            <a href="{{ route('home') }}" class="text-nowrap logo-img">
                 <img src="../assets/images/logos/laravel.png" width="180" alt="" />
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
