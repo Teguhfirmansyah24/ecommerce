@@ -126,7 +126,7 @@
                     {{-- Product Details --}}
                     <div class="mb-3">
                         <h6>Deskripsi</h6>
-                        <p class="text-muted">{!! nl2br(e($product->description)) !!}</p>
+                        <p class="text-muted">{!! nl2br($product->description) !!}</p>
                     </div>
 
                     <div class="row text-muted small">
