@@ -11,15 +11,20 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->command->info('🌱 Starting database seeding...');
-
-        // 1. Buat admin user
+        // Admin
         User::factory()->create([
             'name' => 'Administrator',
             'email' => 'admin@example.com',
             'role' => 'admin',
             'email_verified_at' => now(),
         ]);
-        $this->command->info('✅ Admin user created: admin@example.com');
+
+        // Customer
+        User::factory()->create([
+            'name' => 'User',
+            'email' => 'User@gmail.com',
+            'role' => 'customer',
+            'email_verified_at' => now(),
+        ]);
     }
 }

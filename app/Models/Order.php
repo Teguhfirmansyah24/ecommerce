@@ -14,11 +14,14 @@ class Order extends Model
         'user_id',
         'order_number',
         'status',
+        'payment_status',
+        'payment_method',
         'total_amount',
         'shipping_cost',
         'shipping_name',
         'shipping_phone',
         'shipping_address',
+        'snap_token',
     ];
 
     public function user()

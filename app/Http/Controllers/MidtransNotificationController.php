@@ -213,6 +213,7 @@ class MidtransNotificationController extends Controller
         // Update Order
         $order->update([
             'status' => 'cancelled',
+            'payment_status' => 'unpaid',
         ]);
 
         // Update Payment
