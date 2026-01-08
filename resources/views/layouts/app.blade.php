@@ -25,6 +25,7 @@ en-US --}}
     {{-- Favicon --}}
     <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/logo.png" />
 
     {{-- Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
