@@ -7,7 +7,7 @@
                 style="width:36px;height:36px;">
                 <i class="bi bi-bag-heart-fill"></i>
             </span>
-            <span>Toko Teguh</span>
+            <span>Toko Berkah</span>
         </a>
 
         {{-- Mobile Toggle --}}

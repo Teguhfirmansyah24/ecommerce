@@ -27,7 +27,7 @@ class CartItem extends Model
     // ==================== ACCESSORS ====================
     public function getTotalPriceAttribute()
     {
-        return $this->product->discount_price * $this->quantity;
+        return $this->quantity * $this->product->display_price;
     }
     public function getTotalWeightAttribute()
     {

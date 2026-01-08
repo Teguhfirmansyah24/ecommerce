@@ -37,7 +37,7 @@
     <div class="row g-4 mb-4">
         {{-- Total Pendapatan --}}
         <div class="col-md-4">
-            <div class="card border-0 shadow-sm border-start border-4 border-success">
+            <div class="card shadow-sm border-start border-4 border-success">
                 <div class="card-body">
                     <div class="text-muted small text-uppercase fw-bold">Total Pendapatan</div>
                     <div class="h3 fw-bold text-dark mb-0">
@@ -49,7 +49,7 @@
         </div>
         {{-- Total Transaksi --}}
         <div class="col-md-4">
-            <div class="card border-0 shadow-sm border-start border-4 border-primary">
+            <div class="card shadow-sm border-start border-4 border-primary">
                 <div class="card-body">
                     <div class="text-muted small text-uppercase fw-bold">Total Transaksi</div>
                     <div class="h3 fw-bold text-dark mb-0">

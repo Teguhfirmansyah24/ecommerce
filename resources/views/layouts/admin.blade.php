@@ -27,9 +27,9 @@
                 <!--  Row 1 -->
                 @include('partials.flash-messages')
                 @yield('content')
-                <div class="py-6 px-6 text-center">
-                    @include('layouts.partials.footer')
-                </div>
+            </div>
+            <div class="py-6 px-6 text-center">
+                @include('layouts.partials.footer')
             </div>
         </div>
         <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>

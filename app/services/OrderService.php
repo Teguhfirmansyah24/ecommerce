@@ -42,7 +42,7 @@ class OrderService
                 if ($item->quantity > $item->product->stock) {
                     throw new \Exception("Stok produk {$item->product->name} tidak mencukupi.");
                 }
-                $totalAmount += $item->product->discount_price * $item->quantity;
+                $totalAmount += $item->product->price * $item->quantity;
             }
 
             // B. BUAT HEADER ORDER
@@ -62,9 +62,9 @@ class OrderService
                 $order->items()->create([
                     'product_id'   => $item->product_id,
                     'product_name' => $item->product->name,
-                    'price'        => $item->product->discount_price,
+                    'price'        => $item->product->price,
                     'quantity'     => $item->quantity,
-                    'subtotal'     => $item->product->discount_price * $item->quantity,
+                    'subtotal'     => $item->product->price * $item->quantity,
                 ]);
                 $item->product->decrement('stock', $item->quantity);
             }
