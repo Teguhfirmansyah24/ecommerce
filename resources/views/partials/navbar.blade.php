@@ -1,13 +1,13 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-95 shadow-sm sticky-top border-bottom">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top border-bottom py-2">
     <div class="container">
 
         {{-- Brand --}}
         <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ route('home') }}">
             <span class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
-                style="width:36px;height:36px;">
+                style="width:42px;height:42px;font-size:1.2rem; transition: transform 0.2s;">
                 <i class="bi bi-bag-heart-fill"></i>
             </span>
-            <span>Toko Berkah</span>
+            <span class="fs-5">Luxury Watch</span>
         </a>
 
         {{-- Mobile Toggle --}}
@@ -18,24 +18,29 @@
         <div class="collapse navbar-collapse" id="navbarMain">
 
             {{-- Search --}}
-            <form class="d-flex grow w-100 mx-lg-4 my-3 my-lg-0" action="{{ route('catalog.index') }}" method="GET">
-                <div class="input-group w-100 shadow-sm">
-                    <input type="text" name="q" class="form-control border-0"
-                        placeholder="Cari produk favoritmu..." value="{{ request('q') }}">
+            <form class="d-flex w-100 mx-lg-4 my-3 my-lg-0" action="{{ route('catalog.index') }}" method="GET">
+                <div class="input-group w-100 shadow-sm rounded-pill overflow-hidden border border-1 border-light"
+                    style="transition: all 0.2s;">
+                    <input type="text" name="q" class="form-control border-0 px-4"
+                        placeholder="Cari jam tangan impianmu..." value="{{ request('q') }}"
+                        onfocus="this.parentElement.style.boxShadow='0 0 12px rgba(0,123,255,0.5)'"
+                        onblur="this.parentElement.style.boxShadow='none'">
                     <button class="btn btn-primary px-4" type="submit">
                         <i class="bi bi-search"></i>
                     </button>
                 </div>
             </form>
 
-
             {{-- Right Menu --}}
-            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
 
                 {{-- Katalog --}}
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="{{ route('catalog.index') }}">
+                    <a class="nav-link fw-semibold position-relative" href="{{ route('catalog.index') }}">
                         Katalog
+                        <span
+                            class="position-absolute start-0 bottom-0 w-100 border-bottom border-primary d-none d-lg-block"
+                            style="transition: width 0.3s;"></span>
                     </a>
                 </li>
 
@@ -75,14 +80,14 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#"
                             data-bs-toggle="dropdown">
-                            <img src="{{ auth()->user()->avatar_url }}" class="rounded-circle border" width="34"
-                                height="34">
+                            <img src="{{ auth()->user()->avatar_url }}" class="rounded-circle border" width="36"
+                                height="36" style="transition: transform 0.2s;">
                             <span class="fw-semibold d-none d-lg-inline">
                                 {{ auth()->user()->name }}
                             </span>
                         </a>
 
-                        <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 border-0">
                             <li>
                                 <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                     <i class="bi bi-person me-2"></i> Profil
@@ -125,7 +130,7 @@
                         <a class="nav-link fw-semibold" href="{{ route('login') }}">Masuk</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-primary btn-sm px-3" href="{{ route('register') }}">
+                        <a class="btn btn-primary btn-sm px-4 rounded-pill" href="{{ route('register') }}">
                             Daftar
                         </a>
                     </li>

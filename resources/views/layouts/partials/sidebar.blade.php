@@ -1,68 +1,64 @@
-<aside class="left-sidebar">
-    <!-- Sidebar scroll-->
+<aside class="left-sidebar bg-light border-end vh-100">
     <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="{{ route('home') }}" class="text-nowrap logo-img">
-                <img src="../assets/images/logos/laravel.png" width="180" alt="" />
+
+        <!-- Brand -->
+        <div class="brand-logo d-flex align-items-center px-4 py-3 border-bottom">
+            <a href="{{ route('home') }}" class="d-flex align-items-center gap-2 text-decoration-none">
+                <i class="bi bi-gem fs-4 text-warning"></i>
+                <span class="fw-bold fs-5 text-dark">Luxury Watch</span>
             </a>
-            <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-                <i class="ti ti-x fs-8"></i>
-            </div>
         </div>
-        <!-- Sidebar navigation-->
-        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
-            <ul id="sidebarnav">
-                <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Admin Menu</span>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.dashboard') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-layout-dashboard"></i>
-                        </span>
-                        <span class="hide-menu">Dashboard</span>
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav px-3 pt-3" data-simplebar="">
+            <ul id="sidebarnav" class="list-unstyled">
+
+                <li class="text-muted small fw-semibold mb-2">MAIN</li>
+
+                <li class="sidebar-item mb-1">
+                    <a class="sidebar-link d-flex align-items-center gap-2 rounded px-3 py-2"
+                        href="{{ route('admin.dashboard') }}">
+                        <i class="bi bi-speedometer2"></i>
+                        <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Menu</span>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.products.index') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-article"></i>
-                        </span>
-                        <span class="hide-menu">Product</span>
+
+                <li class="text-muted small fw-semibold mt-4 mb-2">MANAGEMENT</li>
+
+                <li class="sidebar-item mb-1">
+                    <a class="sidebar-link d-flex align-items-center gap-2 rounded px-3 py-2"
+                        href="{{ route('admin.products.index') }}">
+                        <i class="bi bi-box-seam"></i>
+                        <span>Products</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.categories.index') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-tag"></i>
-                        </span>
-                        <span class="hide-menu">Category</span>
+
+                <li class="sidebar-item mb-1">
+                    <a class="sidebar-link d-flex align-items-center gap-2 rounded px-3 py-2"
+                        href="{{ route('admin.categories.index') }}">
+                        <i class="bi bi-tags"></i>
+                        <span>Categories</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.orders.index') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-alert-circle"></i>
-                        </span>
-                        <span class="hide-menu">Orders</span>
+
+                <li class="sidebar-item mb-1">
+                    <a class="sidebar-link d-flex align-items-center gap-2 rounded px-3 py-2"
+                        href="{{ route('admin.orders.index') }}">
+                        <i class="bi bi-receipt"></i>
+                        <span>Orders</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.reports.sales') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-typography"></i>
-                        </span>
-                        <span class="hide-menu">Laporan Penjualan</span>
+
+                <li class="sidebar-item mb-1">
+                    <a class="sidebar-link d-flex align-items-center gap-2 rounded px-3 py-2"
+                        href="{{ route('admin.reports.sales') }}">
+                        <i class="bi bi-bar-chart"></i>
+                        <span>Sales Report</span>
                     </a>
                 </li>
+
             </ul>
         </nav>
-        <!-- End Sidebar navigation -->
+
     </div>
-    <!-- End Sidebar scroll-->
 </aside>

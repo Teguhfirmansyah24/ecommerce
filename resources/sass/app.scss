@@ -53,10 +53,92 @@ body {
     color: var(--text-dark);
 }
 
-/* Navbar Custom */
+/* ===================== NAVBAR ===================== */
+
+/* Navbar utama */
+.navbar {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    z-index: 1030;
+}
+
+/* Navbar Brand */
 .navbar-brand {
-    font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    /* lebih besar dari menu */
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.1);
+}
+
+/* Icon di brand */
+.navbar-brand span:first-child {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-brand span:first-child:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(13, 110, 253, 0.4);
+}
+
+/* Menu links */
+.navbar-nav .nav-link {
+    position: relative;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #0d6efd !important;
+    transform: translateY(-2px);
+}
+
+/* Avatar dropdown */
+.navbar-nav .dropdown-toggle img {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.navbar-nav .dropdown-toggle img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Badge animasi (cart & wishlist) */
+.navbar-nav .badge {
+    transition: transform 0.2s ease;
+}
+
+.navbar-nav .badge:hover {
+    transform: scale(1.2);
+}
+
+/* Search box hover */
+.navbar .input-group .form-control:focus {
+    box-shadow: 0 0 8px rgba(13, 110, 253, 0.3);
+    border-color: #0d6efd;
+}
+
+/* Responsive: Collapse mobile smoother */
+.navbar-collapse.collapse {
+    transition: height 0.35s ease;
+}
+
+/* Button mobile toggle */
+.navbar-toggler {
+    transition: transform 0.3s ease;
+}
+
+.navbar-toggler:hover {
+    transform: rotate(90deg);
+}
+
+/* Background saat scroll */
+.navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* Footer */

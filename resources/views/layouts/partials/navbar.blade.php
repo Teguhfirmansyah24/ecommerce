@@ -1,50 +1,47 @@
-<header class="app-header">
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <ul class="navbar-nav">
-            <li class="nav-item d-block d-xl-none">
-                <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
-                    <i class="ti ti-menu-2"></i>
+<header class="app-header border-bottom bg-white shadow-sm">
+    <nav class="navbar navbar-expand-lg px-3">
+
+        <!-- Left: Logo -->
+        <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center gap-2">
+
+        </a>
+
+        <!-- Right: Profile -->
+        <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="{{ asset('assets/images/profile/user-1.jpg') }}" alt="Profile" width="35"
+                        height="35" class="rounded-circle border">
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                    <i class="ti ti-bell-ringing"></i>
-                    <div class="notification bg-primary rounded-circle"></div>
-                </a>
+
+                <div class="dropdown-menu dropdown-menu-end shadow-sm">
+                    <a href="#" class="dropdown-item d-flex align-items-center gap-2">
+                        <i class="bi bi-person"></i>
+                        <span>My Profile</span>
+                    </a>
+
+                    <a href="#" class="dropdown-item d-flex align-items-center gap-2">
+                        <i class="bi bi-envelope"></i>
+                        <span>My Account</span>
+                    </a>
+
+                    <a href="#" class="dropdown-item d-flex align-items-center gap-2">
+                        <i class="bi bi-list-check"></i>
+                        <span>My Task</span>
+                    </a>
+
+                    <div class="dropdown-divider"></div>
+
+                    <form method="POST" action="{{ route('logout') }}" class="px-3">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-danger btn-sm w-100">
+                            <i class="bi bi-box-arrow-right me-1"></i> Logout
+                        </button>
+                    </form>
+                </div>
             </li>
         </ul>
-        <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
-            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                <li class="nav-item dropdown">
-                    <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ asset('assets/images/profile/user-1.jpg') }}" alt="" width="35"
-                            height="35" class="rounded-circle">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
-                        <div class="message-body">
-                            <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                                <i class="ti ti-user fs-6"></i>
-                                <p class="mb-0 fs-3">My Profile</p>
-                            </a>
-                            <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                                <i class="ti ti-mail fs-6"></i>
-                                <p class="mb-0 fs-3">My Account</p>
-                            </a>
-                            <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                                <i class="ti ti-list-check fs-6"></i>
-                                <p class="mb-0 fs-3">My Task</p>
-                            </a>
-                            <form method="POST" action="{{ route('logout') }}" class="d-inline">
-                                @csrf
-                                <button type="submit" class="btn btn-outline-danger btn-sm">
-                                    <i class="bi bi-box-arrow-right me-1"></i> Logout
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+
     </nav>
 </header>
