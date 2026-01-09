@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Toko Teguh</title>
-    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/logo.png" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/logo.png') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     @stack('styles')
@@ -39,6 +39,8 @@
         <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
         <script src="{{ asset('assets/libs/simplebar/dist/simplebar.js') }}"></script>
         <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
         @stack('scripts')
 </body>
 

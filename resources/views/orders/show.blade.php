@@ -57,7 +57,8 @@
                                             <td>{{ $item->product_name }}</td>
                                             <td class="text-center">{{ $item->quantity }}</td>
                                             <td class="text-end">
-                                                Rp {{ number_format($item->discount_price ?? $item->price, 0, ',', '.') }}
+                                                Rp
+                                                {{ number_format($item->product->discount_price ?? $item->price, 0, ',', '.') }}
                                             </td>
                                             <td class="text-end">
                                                 Rp {{ number_format($item->subtotal, 0, ',', '.') }}

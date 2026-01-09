@@ -4,20 +4,18 @@
 @section('page-title', 'Dashboard')
 
 @section('content')
+
     {{-- Stats Cards --}}
-    {{-- Data $stats dikirim dari Admin/DashboardController --}}
     <div class="row g-4 mb-4">
         <div class="col-sm-6 col-xl-3">
             <div class="card border-0 shadow-sm h-100">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <p class="text-muted mb-1">Total Pendapatan</p>
-                            <h4 class="mb-0">Rp {{ number_format($stats['total_revenue'], 0, ',', '.') }}</h4>
-                        </div>
-                        <div class="bg-success bg-opacity-10 rounded p-3">
-                            <i class="bi bi-currency-dollar text-success fs-4"></i>
-                        </div>
+                <div class="card-body d-flex justify-content-between">
+                    <div>
+                        <p class="text-muted mb-1">Total Pendapatan</p>
+                        <h4 class="mb-0">Rp {{ number_format($stats['total_revenue'], 0, ',', '.') }}</h4>
+                    </div>
+                    <div class="bg-success bg-opacity-10 rounded p-3">
+                        <i class="bi bi-currency-dollar text-success fs-4"></i>
                     </div>
                 </div>
             </div>
@@ -25,15 +23,13 @@
 
         <div class="col-sm-6 col-xl-3">
             <div class="card border-0 shadow-sm h-100">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <p class="text-muted mb-1">Total Pesanan</p>
-                            <h4 class="mb-0">{{ $stats['total_orders'] }}</h4>
-                        </div>
-                        <div class="bg-primary bg-opacity-10 rounded p-3">
-                            <i class="bi bi-bag text-primary fs-4"></i>
-                        </div>
+                <div class="card-body d-flex justify-content-between">
+                    <div>
+                        <p class="text-muted mb-1">Total Pesanan</p>
+                        <h4 class="mb-0">{{ $stats['total_orders'] }}</h4>
+                    </div>
+                    <div class="bg-primary bg-opacity-10 rounded p-3">
+                        <i class="bi bi-bag text-primary fs-4"></i>
                     </div>
                 </div>
             </div>
@@ -41,15 +37,13 @@
 
         <div class="col-sm-6 col-xl-3">
             <div class="card border-0 shadow-sm h-100">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <p class="text-muted mb-1">Perlu Diproses</p>
-                            <h4 class="mb-0">{{ $stats['pending_orders'] }}</h4>
-                        </div>
-                        <div class="bg-warning bg-opacity-10 rounded p-3">
-                            <i class="bi bi-clock text-warning fs-4"></i>
-                        </div>
+                <div class="card-body d-flex justify-content-between">
+                    <div>
+                        <p class="text-muted mb-1">Perlu Diproses</p>
+                        <h4 class="mb-0">{{ $stats['pending_orders'] }}</h4>
+                    </div>
+                    <div class="bg-warning bg-opacity-10 rounded p-3">
+                        <i class="bi bi-clock text-warning fs-4"></i>
                     </div>
                 </div>
             </div>
@@ -57,23 +51,49 @@
 
         <div class="col-sm-6 col-xl-3">
             <div class="card border-0 shadow-sm h-100">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <p class="text-muted mb-1">Stok Menipis</p>
-                            <h4 class="mb-0">{{ $stats['low_stock'] }}</h4>
-                        </div>
-                        <div class="bg-danger bg-opacity-10 rounded p-3">
-                            <i class="bi bi-exclamation-triangle text-danger fs-4"></i>
-                        </div>
+                <div class="card-body d-flex justify-content-between">
+                    <div>
+                        <p class="text-muted mb-1">Stok Menipis</p>
+                        <h4 class="mb-0">{{ $stats['low_stock'] }}</h4>
+                    </div>
+                    <div class="bg-danger bg-opacity-10 rounded p-3">
+                        <i class="bi bi-exclamation-triangle text-danger fs-4"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="row g-4 mb-4">
+        <div class="col-lg-6 col-md-12">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">Grafik Order Bulanan</h5>
+                </div>
+                <div class="card-body">
+                    <div style="height: 300px;">
+                        <canvas id="orderChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-12">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">Pendapatan Harian</h5>
+                </div>
+                <div class="card-body">
+                    <div style="height: 300px;">
+                        <canvas id="dailyRevenueChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Recent Orders + Quick Actions --}}
     <div class="row g-4">
-        {{-- Recent Orders --}}
         <div class="col-lg-8">
             <div class="card border-0 shadow-sm">
                 <div class="card-header bg-white d-flex justify-content-between align-items-center">
@@ -105,9 +125,9 @@
                                         <td>{{ $order->user->name }}</td>
                                         <td>Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
                                         <td>
-                                            <span class="badge bg-{{ $order->status_color }}">
-                                                {{ ucfirst($order->status) }}
-                                            </span>
+                                            @include('components.order-status-badge', [
+                                                'status' => $order->status,
+                                            ])
                                         </td>
                                         <td>{{ $order->created_at->format('d M Y') }}</td>
                                     </tr>
@@ -119,7 +139,6 @@
             </div>
         </div>
 
-        {{-- Quick Actions --}}
         <div class="col-lg-4">
             <div class="card border-0 shadow-sm">
                 <div class="card-header bg-white">
@@ -128,17 +147,68 @@
                 <div class="card-body">
                     <div class="d-grid gap-2">
                         <a href="{{ route('admin.products.create') }}" class="btn btn-primary">
-                            <i class="bi bi-plus-circle me-2"></i> Tambah Produk
+                            Tambah Produk
                         </a>
                         <a href="{{ route('admin.categories.index') }}" class="btn btn-outline-primary">
-                            <i class="bi bi-folder-plus me-2"></i> Kelola Kategori
+                            Kelola Kategori
                         </a>
                         <a href="{{ route('admin.reports.sales') }}" class="btn btn-outline-primary">
-                            <i class="bi bi-file-earmark-bar-graph me-2"></i> Lihat Laporan
+                            Lihat Laporan
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 @endsection
+
+@push('scripts')
+    <script>
+        const labels = @json(array_keys($monthlyOrders));
+        const data = @json(array_values($monthlyOrders));
+
+        new Chart(document.getElementById('orderChart'), {
+            type: 'line',
+            data: {
+                labels: labels.map(m => 'Bulan ' + m),
+                datasets: [{
+                    label: 'Jumlah Order',
+                    data: data,
+                    borderWidth: 2,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        const dailyLabels = @json(array_keys($dailyRevenue));
+        const dailyData = @json(array_values($dailyRevenue));
+
+        new Chart(document.getElementById('dailyRevenueChart'), {
+            type: 'bar',
+            data: {
+                labels: dailyLabels,
+                datasets: [{
+                    label: 'Pendapatan (Rp)',
+                    data: dailyData,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        ticks: {
+                            callback: value => 'Rp ' + value.toLocaleString('id-ID')
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+@endpush

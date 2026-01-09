@@ -23,6 +23,19 @@ class DashboardController extends Controller
             'low_stock' => \App\Models\Product::where('stock', '<', 10)->count(),
         ];
         $recentOrders = \App\Models\Order::with('user')->latest()->take(5)->get();
-        return view('admin.dashboard', compact('stats', 'recentOrders'));
+
+        $monthlyOrders = Order::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+            ->groupBy('month')
+            ->pluck('total', 'month')
+            ->toArray();
+
+        $dailyRevenue = Order::selectRaw('DATE(created_at) as date, SUM(total_amount) as total')
+            ->where('payment_status', 'paid')
+            ->groupBy('date')
+            ->orderBy('date')
+            ->pluck('total', 'date')
+            ->toArray();
+
+        return view('admin.dashboard', compact('stats', 'recentOrders', 'monthlyOrders', 'dailyRevenue'));
     }
 }

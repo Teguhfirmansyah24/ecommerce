@@ -2,14 +2,16 @@
 
 @php
     $classes = [
-        'pending' => 'badge bg-warning text-dark',
-        'processing' => 'badge bg-primary',
-        'completed' => 'badge bg-success',
-        'cancelled' => 'badge bg-danger',
+        'pending' => 'bg-warning text-dark',
+        'processing' => 'bg-primary',
+        'shipped' => 'bg-info',
+        'delivered' => 'bg-success',
+        'cancelled' => 'bg-danger',
     ];
-    $class = $classes[$status] ?? 'badge bg-secondary';
+
+    $class = $classes[$status] ?? 'bg-secondary';
 @endphp
 
-<span class="{{ $class }}">
+<span class="badge {{ $class }} px-3 py-2 rounded-pill fw-semibold shadow-sm">
     {{ ucfirst($status) }}
 </span>

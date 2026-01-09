@@ -71,7 +71,7 @@ class MidtransService
         $itemDetails = $order->items->map(function ($item) {
             return [
                 'id'       => (string) $item->product_id,
-                'price'    => (int) $item->price, // Harga per item (Harus Integer)
+                'price'    => (int) $item->product->discount_price, // Harga per item (Harus Integer)
                 'quantity' => (int) $item->quantity,
                 'name'     => substr($item->product_name, 0, 50), // Batasi nama maks 50 char
             ];
