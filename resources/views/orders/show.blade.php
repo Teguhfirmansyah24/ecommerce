@@ -94,10 +94,12 @@
                                             <td class="fw-medium">{{ $item->product_name }}</td>
                                             <td class="text-center">{{ $item->quantity }}</td>
                                             <td class="text-end">
-                                                Rp {{ number_format($item->price, 0, ',', '.') }}
+                                                Rp
+                                                {{ number_format($item->product->discount_price ?? $item->price, 0, ',', '.') }}
                                             </td>
                                             <td class="text-end fw-semibold">
-                                                Rp {{ number_format($item->subtotal, 0, ',', '.') }}
+                                                Rp {{ number_format($item->price * $item->quantity, 0, ',', '.') }}
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -114,7 +116,14 @@
                                     <tr class="fw-bold fs-5">
                                         <td colspan="3" class="text-end">TOTAL BAYAR</td>
                                         <td class="text-end text-primary">
-                                            Rp {{ number_format($order->total_amount, 0, ',', '.') }}
+                                            @php
+                                                $total = 0;
+                                                foreach ($order->items as $item) {
+                                                    $total += $item->price * $item->quantity;
+                                                }
+                                            @endphp
+
+                                            Rp {{ number_format($total, 0, ',', '.') }}
                                         </td>
                                     </tr>
                                 </tfoot>

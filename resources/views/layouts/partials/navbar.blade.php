@@ -1,13 +1,26 @@
 <header class="app-header border-bottom bg-white shadow-sm">
     <nav class="navbar navbar-expand-lg px-3">
 
-        <!-- Left: Logo -->
-        <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center gap-2">
-
+        <!-- Left: App Title -->
+        <a class="navbar-brand fw-bold me-3" href="#">
+            TEGUH WATCH
         </a>
 
-        <!-- Right: Profile -->
+        <!-- Right: Notification + Profile -->
         <ul class="navbar-nav ms-auto align-items-center">
+
+            <!-- Notification Icon -->
+            <li class="nav-item dropdown me-3">
+                <a class="nav-link position-relative" href="javascript:void(0)" id="notificationDropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-bell fs-5"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="notificationDropdown">
+                    <li><a class="dropdown-item text-center" href="#">No Notification</a></li>
+                </ul>
+            </li>
+
+            <!-- Profile -->
             <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                     aria-expanded="false">
@@ -16,20 +29,6 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-end shadow-sm">
-                    <a href="#" class="dropdown-item d-flex align-items-center gap-2">
-                        <i class="bi bi-person"></i>
-                        <span>My Profile</span>
-                    </a>
-
-                    <a href="#" class="dropdown-item d-flex align-items-center gap-2">
-                        <i class="bi bi-envelope"></i>
-                        <span>My Account</span>
-                    </a>
-
-                    <a href="#" class="dropdown-item d-flex align-items-center gap-2">
-                        <i class="bi bi-list-check"></i>
-                        <span>My Task</span>
-                    </a>
 
                     <div class="dropdown-divider"></div>
 
