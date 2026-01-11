@@ -5,22 +5,20 @@
 @section('content')
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-lg-9">
 
-                <div class="card shadow-sm mb-4">
+                <div class="card shadow-lg border-0 mb-4 overflow-hidden">
 
-                    {{-- Header Order --}}
+                    {{-- HEADER --}}
                     <div class="card-header bg-white d-flex justify-content-between align-items-start">
                         <div>
-                            <h4 class="fw-bold mb-1">
-                                Order #{{ $order->order_number }}
-                            </h4>
+                            <h4 class="fw-bold mb-1">Order #{{ $order->order_number }}</h4>
                             <small class="text-muted">
+                                <i class="bi bi-clock me-1"></i>
                                 {{ $order->created_at->format('d M Y, H:i') }}
                             </small>
                         </div>
 
-                        {{-- Status Badge --}}
                         @php
                             $statusClass = match ($order->status) {
                                 'pending' => 'warning',
@@ -32,17 +30,56 @@
                             };
                         @endphp
 
-                        <span class="badge bg-{{ $statusClass }} px-3 py-2 text-uppercase">
+                        <span class="badge bg-{{ $statusClass }} px-3 py-2 text-uppercase fs-6">
                             {{ $order->status }}
                         </span>
                     </div>
 
-                    {{-- Detail Items --}}
+                    {{-- STATUS TRACKER --}}
+                    @php
+                        $steps = [
+                            'pending' => ['label' => 'Menunggu Pembayaran', 'icon' => 'bi-wallet2'],
+                            'processing' => ['label' => 'Diproses', 'icon' => 'bi-box-seam'],
+                            'shipped' => ['label' => 'Dikirim', 'icon' => 'bi-truck'],
+                            'delivered' => ['label' => 'Selesai', 'icon' => 'bi-check-circle'],
+                        ];
+
+                        $statusOrder = array_keys($steps);
+                        $currentIndex = array_search($order->status, $statusOrder);
+                    @endphp
+
+                    <div class="card-body bg-light border-top">
+                        <div class="position-relative status-tracker-advanced">
+
+                            <div class="progress-line"></div>
+
+                            <div class="d-flex justify-content-between text-center">
+                                @foreach ($steps as $key => $step)
+                                    @php
+                                        $index = array_search($key, $statusOrder);
+                                        $active = $index <= $currentIndex;
+                                    @endphp
+
+                                    <div class="status-step-advanced {{ $active ? 'active' : '' }}">
+                                        <div class="status-icon-advanced">
+                                            <i class="bi {{ $step['icon'] }}"></i>
+                                        </div>
+                                        <p class="small fw-semibold mt-2 mb-0">{{ $step['label'] }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- PRODUK --}}
                     <div class="card-body">
-                        <h5 class="fw-semibold mb-3">Produk yang Dipesan</h5>
+                        <h5 class="fw-bold mb-3">
+                            <i class="bi bi-bag-check me-2"></i>
+                            Produk yang Dipesan
+                        </h5>
 
                         <div class="table-responsive">
-                            <table class="table align-middle">
+                            <table class="table align-middle table-borderless">
                                 <thead class="table-light">
                                     <tr>
                                         <th>Produk</th>
@@ -53,14 +90,13 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($order->items as $item)
-                                        <tr>
-                                            <td>{{ $item->product_name }}</td>
+                                        <tr class="border-bottom">
+                                            <td class="fw-medium">{{ $item->product_name }}</td>
                                             <td class="text-center">{{ $item->quantity }}</td>
                                             <td class="text-end">
-                                                Rp
-                                                {{ number_format($item->product->discount_price ?? $item->price, 0, ',', '.') }}
+                                                Rp {{ number_format($item->price, 0, ',', '.') }}
                                             </td>
-                                            <td class="text-end">
+                                            <td class="text-end fw-semibold">
                                                 Rp {{ number_format($item->subtotal, 0, ',', '.') }}
                                             </td>
                                         </tr>
@@ -75,9 +111,9 @@
                                             </td>
                                         </tr>
                                     @endif
-                                    <tr class="fw-bold">
-                                        <td colspan="3" class="text-end fs-5">TOTAL BAYAR</td>
-                                        <td class="text-end fs-5 text-primary">
+                                    <tr class="fw-bold fs-5">
+                                        <td colspan="3" class="text-end">TOTAL BAYAR</td>
+                                        <td class="text-end text-primary">
                                             Rp {{ number_format($order->total_amount, 0, ',', '.') }}
                                         </td>
                                     </tr>
@@ -86,21 +122,30 @@
                         </div>
                     </div>
 
-                    {{-- Alamat Pengiriman --}}
-                    <div class="card-body bg-light border-top">
-                        <h5 class="fw-semibold mb-2">Alamat Pengiriman</h5>
-                        <p class="mb-1 fw-medium">{{ $order->shipping_name }}</p>
-                        <p class="mb-1">{{ $order->shipping_phone }}</p>
-                        <p class="mb-0">{{ $order->shipping_address }}</p>
+                    {{-- ALAMAT --}}
+                    <div class="card-body bg-white border-top">
+                        <h5 class="fw-bold mb-2">
+                            <i class="bi bi-geo-alt me-2"></i>
+                            Alamat Pengiriman
+                        </h5>
+
+                        <div class="p-3 bg-light rounded-3">
+                            <p class="mb-1 fw-semibold">{{ $order->shipping_name }}</p>
+                            <p class="mb-1 text-muted">{{ $order->shipping_phone }}</p>
+                            <p class="mb-0">{{ $order->shipping_address }}</p>
+                        </div>
                     </div>
 
-                    {{-- Tombol Bayar --}}
+                    {{-- PEMBAYARAN --}}
                     @if ($order->status === 'pending' && $snapToken)
                         <div class="card-body text-center bg-primary bg-opacity-10 border-top">
+                            <h5 class="fw-bold mb-2">Menunggu Pembayaran</h5>
                             <p class="text-muted mb-3">
-                                Selesaikan pembayaran Anda sebelum batas waktu berakhir.
+                                Silakan selesaikan pembayaran agar pesanan dapat segera diproses.
                             </p>
-                            <button id="pay-button" class="btn btn-primary btn-lg px-5">
+
+                            <button id="pay-button" class="btn btn-primary btn-lg px-5 shadow-sm">
+                                <i class="bi bi-credit-card me-2"></i>
                                 Bayar Sekarang
                             </button>
                         </div>
@@ -113,7 +158,7 @@
     </div>
 @endsection
 
-{{-- Midtrans Snap --}}
+{{-- MIDTRANS --}}
 @if ($snapToken)
     @push('scripts')
         <script src="{{ config('midtrans.snap_url') }}" data-client-key="{{ config('midtrans.client_key') }}"></script>
@@ -121,7 +166,6 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const payButton = document.getElementById('pay-button');
-
                 if (!payButton) return;
 
                 payButton.addEventListener('click', function() {
@@ -130,13 +174,13 @@
 
                     window.snap.pay('{{ $snapToken }}', {
                         onSuccess: function() {
-                            window.location.href = '{{ route('orders.success', $order) }}';
+                            window.location.reload();
                         },
                         onPending: function() {
-                            window.location.href = '{{ route('orders.pending', $order) }}';
+                            window.location.reload();
                         },
                         onError: function() {
-                            alert('Pembayaran gagal. Silakan coba lagi.');
+                            alert('Pembayaran gagal.');
                             payButton.disabled = false;
                             payButton.textContent = 'Bayar Sekarang';
                         },

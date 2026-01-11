@@ -31,6 +31,8 @@ en-US --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+
+
     <!-- Scripts & Styles -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js']) {{-- ↑ Load file
     CSS dan JS yang sudah di-compile oleh Vite - app.scss berisi Bootstrap dan

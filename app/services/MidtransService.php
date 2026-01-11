@@ -43,9 +43,15 @@ class MidtransService
         // 1. Transaction Details (WAJIB)
         // 'gross_amount' HARUS integer (Rupiah tidak ada sen di Midtrans).
         // Jangan kirim float/string pecahan!
+        $total = (int) $order->total_amount;
+
+        if ($total < 1) {
+            throw new Exception('Total pembayaran tidak valid. Nilai harus minimal 1.');
+        }
+
         $transactionDetails = [
             'order_id'     => $order->order_number,
-            'gross_amount' => (int) $order->total_amount,
+            'gross_amount' => $total,
         ];
 
         // 2. Customer Details (Opsional tapi Recommended)
@@ -69,9 +75,14 @@ class MidtransService
         // 3. Item Details (Opsional, tapi BAGUS untuk UX)
         // User bisa lihat detail barang apa saja yang dibayar di halaman Midtrans.
         $itemDetails = $order->items->map(function ($item) {
+            $price = $item->product->discount_price ?? $item->product->price;
+
+            if ($price < 1) {
+                throw new Exception('Harga produk tidak valid: ' . $item->product_name);
+            }
             return [
                 'id'       => (string) $item->product_id,
-                'price'    => (int) $item->product->discount_price, // Harga per item (Harus Integer)
+                'price'    => (int) $price, // Harga per item (Harus Integer)
                 'quantity' => (int) $item->quantity,
                 'name'     => substr($item->product_name, 0, 50), // Batasi nama maks 50 char
             ];

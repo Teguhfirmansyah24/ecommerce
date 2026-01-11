@@ -54,7 +54,6 @@ class UpdateProductRequest extends FormRequest
             'images.*' => [
                 'image', // Harus berupa file gambar
                 'mimes:jpg,png,webp', // Ekstensi yang diperbolehkan
-                'max:2048' // Maksimal 2MB per file (2048 KB)
             ],
         ];
     }

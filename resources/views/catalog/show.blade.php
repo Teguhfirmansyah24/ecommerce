@@ -4,11 +4,15 @@
 
 @section('content')
     <div class="container py-5">
+
         {{-- Breadcrumb --}}
-        <nav aria-label="breadcrumb" class="mb-4">
-            <ol class="breadcrumb bg-light p-2 rounded-3">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-decoration-none">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('catalog.index') }}" class="text-decoration-none">Katalog</a>
+        <nav aria-label="breadcrumb" class="mb-4 animate-on-scroll">
+            <ol class="breadcrumb bg-light px-3 py-2 rounded-2 shadow-sm">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('home') }}" class="text-decoration-none">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('catalog.index') }}" class="text-decoration-none">Katalog</a>
                 </li>
                 <li class="breadcrumb-item">
                     <a href="{{ route('catalog.index', ['category' => $product->category->slug]) }}"
@@ -16,18 +20,22 @@
                         {{ $product->category->name }}
                     </a>
                 </li>
-                <li class="breadcrumb-item active">{{ Str::limit($product->name, 30) }}</li>
+                <li class="breadcrumb-item active">
+                    {{ Str::limit($product->name, 30) }}
+                </li>
             </ol>
         </nav>
 
-        <div class="row g-4">
-            {{-- Product Images --}}
-            <div class="col-lg-6">
-                <div class="card border-0 shadow-sm rounded-3">
-                    <div class="position-relative overflow-hidden">
+        <div class="row g-5">
+
+            {{-- PRODUCT IMAGE --}}
+            <div class="col-lg-6 animate-on-scroll">
+                <div class="card border-0 shadow-sm">
+
+                    <div class="position-relative bg-white text-center p-4">
+
                         <img src="{{ $product->image_url }}" id="main-image" alt="{{ $product->name }}"
-                            class="card-img-top product-main-img"
-                            style="height: 400px; object-fit: contain; background: #fff;">
+                            class="img-fluid product-main-img" style="max-height:420px; object-fit:contain;">
 
                         @if ($product->has_discount)
                             <span class="badge bg-danger position-absolute top-0 start-0 m-3 fs-6">
@@ -36,33 +44,34 @@
                         @endif
                     </div>
 
-                    {{-- Thumbnail Gallery --}}
+                    {{-- Thumbnail --}}
                     @if ($product->images->count() > 1)
-                        <div class="card-body py-3">
-                            <div class="d-flex gap-2 overflow-auto">
+                        <div class="card-body pt-3">
+                            <div class="d-flex gap-2 justify-content-center flex-wrap">
+
                                 @foreach ($product->images as $image)
-                                    <img src="{{ asset('storage/' . $image->image_path) }}"
-                                        class="rounded border border-light thumb-img"
-                                        style="width: 80px; height: 80px; object-fit: cover;"
+                                    <img src="{{ asset('storage/' . $image->image_path) }}" class="border thumb-img"
+                                        style="width:70px; height:70px; object-fit:cover; cursor:pointer;"
                                         onclick="document.getElementById('main-image').src = this.src">
                                 @endforeach
+
                             </div>
                         </div>
                     @endif
+
                 </div>
             </div>
 
-            {{-- Product Info --}}
-            <div class="col-lg-6">
-                <div class="card border-0 shadow-sm rounded-3 p-4">
-                    {{-- Category --}}
+            {{-- PRODUCT INFO --}}
+            <div class="col-lg-6 animate-on-scroll">
+                <div class="card border-0 shadow-sm p-4">
+
                     <a href="{{ route('catalog.index', ['category' => $product->category->slug]) }}"
-                        class="badge bg-light text-dark text-decoration-none mb-2">
+                        class="badge bg-light text-dark text-decoration-none mb-3">
                         {{ $product->category->name }}
                     </a>
 
-                    {{-- Title --}}
-                    <h2 class="mb-3">{{ $product->name }}</h2>
+                    <h2 class="fw-bold mb-3">{{ $product->name }}</h2>
 
                     {{-- Price --}}
                     <div class="mb-3">
@@ -71,29 +80,39 @@
                                 {{ $product->formatted_original_price }}
                             </div>
                         @endif
-                        <div class="h3 text-primary fw-bold mb-0">{{ $product->formatted_price }}</div>
+                        <div class="h3 text-primary fw-bold">
+                            {{ $product->formatted_price }}
+                        </div>
                     </div>
 
-                    {{-- Stock Status --}}
+                    {{-- Stock --}}
                     <div class="mb-4">
                         @if ($product->stock > 10)
-                            <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Stok Tersedia</span>
+                            <span class="badge bg-success">
+                                <i class="bi bi-check-circle me-1"></i> Stok Tersedia
+                            </span>
                         @elseif($product->stock > 0)
-                            <span class="badge bg-warning text-dark"><i class="bi bi-exclamation-triangle me-1"></i> Stok
-                                Tinggal {{ $product->stock }}</span>
+                            <span class="badge bg-warning text-dark">
+                                <i class="bi bi-exclamation-triangle me-1"></i>
+                                Stok Tinggal {{ $product->stock }}
+                            </span>
                         @else
-                            <span class="badge bg-danger"><i class="bi bi-x-circle me-1"></i> Stok Habis</span>
+                            <span class="badge bg-danger">
+                                <i class="bi bi-x-circle me-1"></i> Stok Habis
+                            </span>
                         @endif
                     </div>
 
-                    {{-- Add to Cart Form --}}
+                    {{-- Add to Cart --}}
                     <form action="{{ route('cart.add') }}" method="POST" class="mb-4">
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
+
                         <div class="row g-3 align-items-end">
+
                             <div class="col-auto">
-                                <label class="form-label">Jumlah</label>
-                                <div class="input-group" style="width: 140px;">
+                                <label class="form-label fw-semibold">Jumlah</label>
+                                <div class="input-group" style="width:140px;">
                                     <button type="button" class="btn btn-outline-secondary"
                                         onclick="decrementQty()">-</button>
                                     <input type="number" name="quantity" id="quantity" value="1" min="1"
@@ -102,12 +121,15 @@
                                         onclick="incrementQty()">+</button>
                                 </div>
                             </div>
+
                             <div class="col">
                                 <button type="submit" class="btn btn-primary btn-lg w-100"
                                     @if ($product->stock == 0) disabled @endif>
-                                    <i class="bi bi-cart-plus me-2"></i> Tambah ke Keranjang
+                                    <i class="bi bi-cart-plus me-2"></i>
+                                    Tambah ke Keranjang
                                 </button>
                             </div>
+
                         </div>
                     </form>
 
@@ -123,66 +145,40 @@
 
                     <hr>
 
-                    {{-- Product Details --}}
+                    {{-- Description --}}
                     <div class="mb-3">
-                        <h6>Deskripsi</h6>
+                        <h6 class="fw-semibold">Deskripsi Produk</h6>
                         <p class="text-muted">{!! nl2br($product->description) !!}</p>
                     </div>
 
+                    {{-- Extra Info --}}
                     <div class="row text-muted small">
-                        <div class="col-6 mb-2"><i class="bi bi-box me-2"></i> Berat: {{ $product->weight }} gram</div>
-                        <div class="col-6 mb-2"><i class="bi bi-tag me-2"></i> SKU: PROD-{{ $product->id }}</div>
+                        <div class="col-6 mb-2">
+                            <i class="bi bi-box me-2"></i> Berat: {{ $product->weight }} gram
+                        </div>
+                        <div class="col-6 mb-2">
+                            <i class="bi bi-tag me-2"></i> SKU: PROD-{{ $product->id }}
+                        </div>
                     </div>
+
                 </div>
             </div>
+
         </div>
     </div>
 
     @push('scripts')
         <script>
             function incrementQty() {
-                const input = document.getElementById('quantity');
-                const max = parseInt(input.max);
-                if (parseInt(input.value) < max) input.value = parseInt(input.value) + 1;
+                const input = document.getElementById('quantity')
+                const max = parseInt(input.max)
+                if (parseInt(input.value) < max) input.value++
             }
 
             function decrementQty() {
-                const input = document.getElementById('quantity');
-                if (parseInt(input.value) > 1) input.value = parseInt(input.value) - 1;
+                const input = document.getElementById('quantity')
+                if (parseInt(input.value) > 1) input.value--
             }
         </script>
     @endpush
-
-    <style>
-        /* Hover zoom main image */
-        .product-main-img:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s ease;
-        }
-
-        /* Thumbnail highlight on hover */
-        .thumb-img:hover {
-            border-color: #0d6efd;
-            transform: scale(1.05);
-            transition: all 0.2s ease-in-out;
-            cursor: pointer;
-        }
-
-        /* Product card hover */
-        .card-body:hover {
-            box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.15);
-            transition: box-shadow 0.3s;
-        }
-
-        /* Buttons hover effect */
-        .btn-primary:hover {
-            background-color: #0b5ed7;
-        }
-
-        .btn-outline-danger:hover {
-            color: #fff;
-            background-color: #dc3545;
-            border-color: #dc3545;
-        }
-    </style>
 @endsection

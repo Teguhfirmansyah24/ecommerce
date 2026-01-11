@@ -73,10 +73,6 @@ Route::middleware('auth')->group(function () {
     // Payment Routes
     Route::get('/orders/{order}/pay', [OrderController::class, 'show'])
         ->name('orders.pay');
-    Route::get('/orders/{order}/success', [OrderController::class, 'success'])
-        ->name('orders.success');
-    Route::get('/orders/{order}/pending', [OrderController::class, 'pending'])
-        ->name('orders.pending');
 });
 
 // ========================================
