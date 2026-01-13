@@ -79,7 +79,7 @@ class CatalogController extends Controller
         // 7. PAGINATION
         // withQueryString() menjaga parameter filter di URL pagination
         // ================================================
-        $products = $query->paginate(12)->withQueryString();
+        $products = $query->paginate(6)->withQueryString();
 
         // ================================================
         // 8. DATA SIDEBAR

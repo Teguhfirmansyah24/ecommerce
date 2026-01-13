@@ -58,7 +58,7 @@
                 <div class="card login-card shadow-sm">
                     <div class="card-header bg-white text-center py-3">
                         <h5 class="fw-semibold mb-1">
-                            <i class="bi bi-lock-fill me-1"></i>Login
+                            Login
                         </h5>
                         <small class="text-muted">Silakan masuk untuk melanjutkan</small>
                     </div>

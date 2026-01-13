@@ -11,7 +11,6 @@
                 <h1 class="h3 fw-bold mb-1">Pesanan Saya</h1>
                 <p class="text-muted mb-0">Pantau status pesanan Anda secara real-time</p>
             </div>
-            <i class="bi bi-receipt text-primary" style="font-size: 2.5rem;"></i>
         </div>
 
         <div class="card shadow-sm border-0 rounded-4 overflow-hidden">

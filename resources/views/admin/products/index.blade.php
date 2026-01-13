@@ -72,7 +72,17 @@
                             <td class="text-muted">{{ $product->category->name }}</td>
 
                             <td class="fw-semibold">
-                                Rp {{ number_format($product->price, 0, ',', '.') }}
+                                @if ($product->discount_price > 0)
+                                    <span class="text-danger">
+                                        Rp {{ number_format($product->final_price, 0, ',', '.') }}
+                                    </span>
+                                    <br>
+                                    <small class="text-muted text-decoration-line-through">
+                                        Rp {{ number_format($product->price, 0, ',', '.') }}
+                                    </small>
+                                @else
+                                    Rp {{ number_format($product->price, 0, ',', '.') }}
+                                @endif
                             </td>
 
                             <td>

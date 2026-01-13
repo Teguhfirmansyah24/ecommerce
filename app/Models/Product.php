@@ -178,6 +178,12 @@ class Product extends Model
         return $this->weight . ' gram';
     }
 
+    public function getFinalPriceAttribute(): float
+{
+    return $this->price - ($this->discount_price ?? 0);
+}
+
+
     // Scopes
 
     // Filter produk aktif

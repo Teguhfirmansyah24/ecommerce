@@ -62,7 +62,7 @@
                 <div class="card register-card">
                     <div class="card-header bg-white text-center py-3 border-bottom">
                         <h5 class="fw-semibold mb-1">
-                            <i class="bi bi-person-plus-fill me-1"></i>Register
+                            Register
                         </h5>
                         <small class="text-muted">Buat akun baru untuk melanjutkan</small>
                     </div>

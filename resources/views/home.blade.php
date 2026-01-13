@@ -12,7 +12,7 @@
                 {{-- Konten Teks --}}
                 <div class="col-lg-5" data-aos="fade-right">
                     <h1 class="display-5 fw-bold text-uppercase mb-3">
-                        Koleksi Jam Tangan <br> Abadi & Elegan
+                        Koleksi Jam Tangan <br> Mewah & Elegan
                     </h1>
 
                     <p class="text-muted mb-4">

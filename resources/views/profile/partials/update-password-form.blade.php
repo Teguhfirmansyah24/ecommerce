@@ -8,7 +8,6 @@
                     Gunakan password yang kuat untuk melindungi akun kamu.
                 </p>
             </div>
-            <i class="bi bi-shield-lock fs-3 text-secondary"></i>
         </div>
 
         <form method="post" action="{{ route('profile.password.update') }}">

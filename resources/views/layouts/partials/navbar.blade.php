@@ -2,9 +2,11 @@
     <nav class="navbar navbar-expand-lg px-3">
 
         <!-- Left: App Title -->
-        <a class="navbar-brand fw-bold me-3" href="#">
-            TEGUH WATCH
+        <a href="{{ route('home') }}" class="btn btn-outline-primary fw-bold d-flex align-items-center" target="_blank">
+            <i class="bi bi-house-door-fill me-2"></i>
+            HOME
         </a>
+
 
         <!-- Right: Notification + Profile -->
         <ul class="navbar-nav ms-auto align-items-center">

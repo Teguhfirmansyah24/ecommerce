@@ -14,40 +14,6 @@
 /* Import Bootstrap Icons */
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
-/* ================================================
-   CUSTOM STYLES - Variabel dan Override
-   ================================================ */
-
-:root {
-    /* Warna Brand Toko */
-    --primary-color: #4f46e5;
-    /* Indigo */
-    --secondary-color: #10b981;
-    /* Emerald */
-    --accent-color: #f59e0b;
-    /* Amber */
-
-    /* Warna Text */
-    --text-dark: #1f2937;
-    --text-muted: #6b7280;
-    --text-light: #9ca3af;
-}
-
-/* Override Bootstrap Primary */
-.btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.btn-primary:hover {
-    background-color: #4338ca;
-    border-color: #4338ca;
-}
-
-/* ================================================
-   LAYOUT STYLES
-   ================================================ */
-
 body {
     font-family: "Inter", system-ui, -apple-system, sans-serif;
     color: var(--text-dark);
@@ -99,7 +65,13 @@ body {
     width: 100%;
 }
 
-// hero
+.nav-luxury:focus::after,
+.nav-luxury:focus-visible::after,
+.nav-luxury.active::after {
+    width: 100%;
+}
+
+// Section
 .hero-watch h1 {
     letter-spacing: 1px;
 }
@@ -196,97 +168,6 @@ body {
 }
 
 // Footer
-footer {
-    background: linear-gradient(180deg, #0a0a0a, #121212);
-    border-top: 1px solid rgba(255, 215, 0, 0.15);
-}
-
-footer h5,
-footer h6 {
-    letter-spacing: 0.5px;
-}
-
-footer .text-warning {
-    color: #d4af37 !important;
-}
-
-.footer-link {
-    position: relative;
-    transition: color 0.3s ease;
-}
-
-.footer-link:hover {
-    color: #d4af37 !important;
-}
-
-.footer-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0%;
-    height: 2px;
-    background: linear-gradient(90deg, #d4af37, #fff3b0);
-    transition: width 0.3s ease;
-}
-
-.footer-link:hover::after {
-    width: 100%;
-}
-
-.social-icon {
-    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.social-icon:hover {
-    color: #d4af37 !important;
-    transform: translateY(-4px) scale(1.1);
-    text-shadow: 0 0 12px rgba(212, 175, 55, 0.7);
-}
-
-footer hr {
-    border-color: rgba(212, 175, 55, 0.2);
-}
-
-/* Subtle fade-in animation */
-footer .col-lg-4,
-footer .col-lg-2 {
-    animation: fadeUp 0.8s ease forwards;
-    opacity: 0;
-}
-
-footer .col-lg-4:nth-child(1) {
-    animation-delay: 0.1s;
-}
-
-footer .col-lg-2:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-footer .col-lg-2:nth-child(3) {
-    animation-delay: 0.3s;
-}
-
-footer .col-lg-4:nth-child(4) {
-    animation-delay: 0.4s;
-}
-
-@keyframes fadeUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* ============================
-   LUXURY FOOTER THEME
-   ============================ */
-
 footer {
     background: linear-gradient(180deg, #0a0a0a, #121212);
     border-top: 1px solid rgba(255, 215, 0, 0.15);
@@ -424,5 +305,3 @@ footer .col-lg-4:nth-child(4) { animation-delay: 0.4s; }
     font-weight: 600;
     border-radius: 999px;
 }
-
-// profile

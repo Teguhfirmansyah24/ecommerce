@@ -3,7 +3,7 @@
 
         <!-- Brand -->
         <div class="brand-logo d-flex align-items-center px-4 py-3 border-bottom">
-            <a href="{{ route('home') }}" class="d-flex align-items-center gap-2 text-decoration-none">
+            <a href="{{ route('admin.dashboard') }}" class="d-flex align-items-center gap-2 text-decoration-none">
                 <i class="bi bi-shield-lock" style="font-size: 30px"></i>
                 <span class="fw-bold fs-5 text-secondary">Admin</span> <span class="fw-bold fs-5 text-dark">Panel</span>
             </a>

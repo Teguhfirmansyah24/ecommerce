@@ -29,9 +29,14 @@
 
             {{-- Right Menu --}}
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-4">
+                <li class="nav-item">
+                    <a class="nav-link nav-luxury {{ request()->routeIs('home') ? 'active' : '' }}"
+                        href="{{ route('home') }}">Home</a>
+                </li>
 
                 <li class="nav-item">
-                    <a class="nav-link nav-luxury" href="{{ route('catalog.index') }}">Katalog</a>
+                    <a class="nav-link nav-luxury {{ request()->routeIs('catalog.index') ? 'active' : '' }}"
+                        href="{{ route('catalog.index') }}">Katalog</a>
                 </li>
 
                 @auth

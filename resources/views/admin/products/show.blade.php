@@ -67,14 +67,20 @@
 
                     {{-- Price --}}
                     <h5 class="fw-bold mb-3">
-                        Rp {{ number_format($product->price, 0, ',', '.') }}
-
-                        @if ($product->discount_price)
-                            <span class="text-muted fs-6 text-decoration-line-through ms-2">
-                                Rp {{ number_format($product->discount_price, 0, ',', '.') }}
+                        @if ($product->discount_price > 0)
+                            <span class="text-danger">
+                                Rp {{ number_format($product->final_price, 0, ',', '.') }}
                             </span>
+
+                            <span class="text-muted fs-6 text-decoration-line-through ms-2">
+                                Rp {{ number_format($product->price, 0, ',', '.') }}
+                            </span>
+                        @else
+                            Rp {{ number_format($product->price, 0, ',', '.') }}
                         @endif
                     </h5>
+
+
 
                     {{-- Status --}}
                     <div class="mb-3 d-flex gap-2">

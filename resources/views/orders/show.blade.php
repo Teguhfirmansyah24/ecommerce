@@ -139,9 +139,9 @@
                         </h5>
 
                         <div class="p-3 bg-light rounded-3">
-                            <p class="mb-1 fw-semibold">{{ $order->shipping_name }}</p>
-                            <p class="mb-1 text-muted">{{ $order->shipping_phone }}</p>
-                            <p class="mb-0">{{ $order->shipping_address }}</p>
+                            <p class="mb-1 fw-semibold">Nama: {{ $order->shipping_name }}</p>
+                            <p class="mb-1">No Telepon: {{ $order->shipping_phone }}</p>
+                            <p class="mb-0">Alamat: {{ $order->shipping_address }}</p>
                         </div>
                     </div>
 

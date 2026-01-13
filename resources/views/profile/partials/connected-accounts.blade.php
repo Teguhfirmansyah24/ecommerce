@@ -8,7 +8,6 @@
                     Kelola akun sosial yang terhubung dengan akun kamu.
                 </p>
             </div>
-            <i class="bi bi-shield-lock fs-3 text-primary"></i>
         </div>
 
         <div class="list-group list-group-flush">

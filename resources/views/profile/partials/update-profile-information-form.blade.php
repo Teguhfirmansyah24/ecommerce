@@ -8,7 +8,6 @@
                     Perbarui data akun yang digunakan untuk transaksi dan komunikasi.
                 </p>
             </div>
-            <i class="bi bi-person-badge fs-3 text-secondary"></i>
         </div>
 
         <form id="send-verification" method="post" action="">

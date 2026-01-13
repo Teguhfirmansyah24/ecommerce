@@ -45,7 +45,7 @@ class OrderController extends Controller
     {
         // Validasi status yang dikirim form
         $request->validate([
-            'status' => 'required|in:pending,processing,shipped,completed,cancelled'
+            'status' => 'required|in:pending,processing,shipped,delivered,cancelled'
         ]);
 
         $oldStatus = $order->status;

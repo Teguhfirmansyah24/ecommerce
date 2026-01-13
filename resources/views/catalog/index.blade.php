@@ -39,7 +39,7 @@
                                         </div>
 
                                         <span class="badge bg-light text-dark border">
-                                            {{ $cat->products_count }}
+                                            {{ $cat->active_products_count }}
                                         </span>
                                     </div>
                                 @endforeach
